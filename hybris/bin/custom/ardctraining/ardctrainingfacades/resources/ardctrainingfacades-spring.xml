@@ -182,4 +182,27 @@
 	</bean>
 
 	<bean id="genderData" class="com.ardctraining.facades.product.data.GenderData" scope="prototype"/>
+
+	<!-- BEGIN custom beans -->
+	<alias name="defaultJobRolePopulator" alias="jobRolePopulator" />
+	<bean id="defaultJobRolePopulator" class="com.ardctraining.facades.populators.JobRolePopulator" />
+
+	<alias name="deafultJobRoleConverter" alias="jobRoleConverter" />
+	<bean id="deafultJobRoleConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.ardctraining.facades.customer.data.JobRoleData" />
+		<property name="populators">
+			<list>
+				<ref bean="jobRolePopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultArdctrainingCustomerFacade" alias="customerFacade" />
+	<bean id="defaultArdctrainingCustomerFacade"
+		  class="com.ardctraining.facades.customer.impl.DefaultArdctrainingCustomerFacade"
+		  parent="defaultCustomerFacade">
+		<property name="ardctrainingJobRoleService" ref="ardctrainingJobRoleService" />
+		<property name="jobRoleConverter" ref="jobRoleConverter" />
+	</bean>
+	<!-- END custom beans -->
 </beans>

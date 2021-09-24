@@ -538,4 +538,15 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+	<!-- BEGIN custom beans -->
+	<alias name="defaultArdctrainingJobRoleDao" alias="ardctrainingJobRoleDao" />
+	<bean id="defaultArdctrainingJobRoleDao" class="com.ardctraining.core.customer.dao.impl.DefaultArdctrainingJobRoleDao" />
+
+	<alias name="defaultArdctrainingJobRoleService" alias="ardctrainingJobRoleService" />
+	<bean id="defaultArdctrainingJobRoleService" class="com.ardctraining.core.customer.service.impl.DefaultArdctrainingJobRoleService">
+		<property name="ardctrainingJobRoleDao" ref="ardctrainingJobRoleDao" />
+	</bean>
+	<!-- END custom beans -->
+
 </beans>

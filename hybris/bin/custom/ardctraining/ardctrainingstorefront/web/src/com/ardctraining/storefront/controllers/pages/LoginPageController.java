@@ -9,6 +9,7 @@ import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import com.ardctraining.storefront.controllers.ControllerConstants;
+import com.ardctraining.storefront.form.ArdctrainingRegisterForm;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,9 +34,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping(value = "/login")
-public class LoginPageController extends AbstractLoginPageController
+public class LoginPageController extends AbstractArdctrainingLoginPageController
 {
 	private HttpSessionRequestCache httpSessionRequestCache;
+
+	@Resource(name = "ardctrainingRegisterValidator")
+	private Validator ardctrainingRegisterValidator;
 
 	@Override
 	protected String getView()
@@ -88,11 +93,13 @@ public class LoginPageController extends AbstractLoginPageController
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String doRegister(@RequestHeader(value = "referer", required = false) final String referer, final RegisterForm form,
+	public String doRegister(@RequestHeader(value = "referer", required = false) final String referer, final ArdctrainingRegisterForm form,
 			final BindingResult bindingResult, final Model model, final HttpServletRequest request,
 			final HttpServletResponse response, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
-		getRegistrationValidator().validate(form, bindingResult);
+		ardctrainingRegisterValidator.validate(form, bindingResult);
+		model.addAttribute("jobRoles", getCustomerFacade().getJobRoles());
+
 		return processRegisterUserRequest(referer, form, bindingResult, model, request, response, redirectModel);
 	}
 

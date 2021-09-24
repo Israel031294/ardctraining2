@@ -43,6 +43,12 @@
                         <spring:theme code='${skipBlankMessageKey}'/>
                     </option>
                 </c:if>
+
+                <c:set var="field" value="" />
+                <c:choose>
+                    <c:when test=""></c:when>
+                </c:choose>
+
                 <form:options items="${items}" itemValue="${not empty itemValue ? itemValue :'code'}"
                               itemLabel="${not empty itemLabel ? itemLabel :'name'}"/>
             </form:select>

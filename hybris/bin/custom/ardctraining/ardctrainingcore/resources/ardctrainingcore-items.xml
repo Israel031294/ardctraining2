@@ -31,6 +31,43 @@
 
         <!-- Add your item definitions here -->
 
+        <typegroup name="ardctraining">
+            <itemtype code="Customer" autocreate="false" generate="false">
+                <attributes>
+                    <attribute qualifier="company" type="java.lang.String">
+                        <modifiers write="true" read="true" />
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="jobRole" type="JobRole">
+                        <modifiers write="true" read="true" />
+                        <persistence type="property" />
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="JobRole"
+                      autocreate="true"
+                      generate="true"
+                      jaloclass="com.ardctraining.core.jalo.JobRole">
+                <description>Customer's job role</description>
+                <deployment table="jobrole" typecode="10601" />
+                <attributes>
+                    <attribute qualifier="code" type="java.lang.String">
+                        <modifiers read="true" write="true" unique="true" />
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="description" type="java.lang.String">
+                        <modifiers write="true" read="true" />
+                        <persistence type="property" />
+                    </attribute>
+                </attributes>
+                <indexes>
+                    <index name="pk_jobrole" unique="true">
+                        <key attribute="code" />
+                    </index>
+                </indexes>
+            </itemtype>
+        </typegroup>
 
         <!-- TypeGroups are for structure of this file only -->
 

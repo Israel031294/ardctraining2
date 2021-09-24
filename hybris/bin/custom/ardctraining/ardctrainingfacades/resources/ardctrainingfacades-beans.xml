@@ -12,4 +12,14 @@
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<bean class="com.ardctraining.facades.customer.data.JobRoleData">
+		<property name="code" type="java.lang.String" />
+		<property name="name" type="java.lang.String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.RegisterData">
+		<property name="company" type="java.lang.String" />
+		<property name="jobRole" type="java.lang.String" />
+	</bean>
 </beans>

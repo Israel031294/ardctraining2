@@ -1,0 +1,11 @@
+INSERT JobRole;code;description
+              ;PR  ;President
+              ;OW  ;Owner
+              ;MA  ;Manager
+              ;ST  ;Staff
+
+INSERT_UPDATE JobRole; code[unique=true]; description
+                     ; PR               ; PR
+
+REMOVE JobRole; code[unique=true]
+              ; PR
