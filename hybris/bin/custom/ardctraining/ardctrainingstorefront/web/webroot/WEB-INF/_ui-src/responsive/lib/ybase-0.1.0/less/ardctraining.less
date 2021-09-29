@@ -1,0 +1,31 @@
+@label-primary-bg:green;
+@label-secondary-bg:blue;
+@label-alternative-bg:red;
+
+.product-details {
+
+  &__product-custom-labels {
+
+    display: blocK;
+    margin-bottom: 10px;
+
+    &__item {
+      font-size: 1em;
+      color: white;
+
+      &.primary {
+        background-color: @label-primary-bg;
+      }
+
+      &.secondary {
+        background-color: @label-secondary-bg;
+      }
+
+      &.alternative {
+        background-color: @label-alternative-bg;
+      }
+    }
+
+  }
+
+}

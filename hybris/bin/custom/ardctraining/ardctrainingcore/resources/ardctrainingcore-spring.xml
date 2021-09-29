@@ -547,6 +547,23 @@
 	<bean id="defaultArdctrainingJobRoleService" class="com.ardctraining.core.customer.service.impl.DefaultArdctrainingJobRoleService">
 		<property name="ardctrainingJobRoleDao" ref="ardctrainingJobRoleDao" />
 	</bean>
+
+	<bean id="customProductLabelPrepareInterceptor" class="com.ardctraining.core.interceptor.CustomProductLabelPrepareInterceptor" />
+
+	<bean id="customProductLabelPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="customProductLabelPrepareInterceptor" />
+		<property name="typeCode" value="CustomProductLabel" />
+	</bean>
+
+	<alias name="defaultCustomProductLabelDao" alias="customProductLabelDao" />
+	<bean id="defaultCustomProductLabelDao" class="com.ardctraining.core.product.dao.impl.DefaultCustomProductLabelDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+
+	<alias name="defaultCustomProductLabelService" alias="customProductLabelService" />
+	<bean id="defaultCustomProductLabelService" class="com.ardctraining.core.product.service.impl.DefaultCustomProductLabelService">
+		<property name="customProductLabelDao" ref="customProductLabelDao" />
+	</bean>
 	<!-- END custom beans -->
 
 </beans>

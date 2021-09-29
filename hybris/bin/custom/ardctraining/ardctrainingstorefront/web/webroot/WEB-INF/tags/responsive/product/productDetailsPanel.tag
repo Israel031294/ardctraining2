@@ -21,6 +21,7 @@
 				<div class="col-lg-6">
 					<div class="product-details">
 						<product:productPromotionSection product="${product}"/>
+						<product:customProductLabel customLabels="${labels}" />
 						<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
 							<product:productPricePanel product="${product}" />
 						</ycommerce:testId>

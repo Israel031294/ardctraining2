@@ -1,0 +1,7 @@
+$catalog=electronicsProductCatalog
+$catalogVersion=Online
+
+INSERT_UPDATE CustomProductLabel; customer(uid)[unique = true]; product(code, catalogVersion(catalog(id), version))[unique = true]; label[unique = true]; validityDate[dateformat = yyyy.MM.dd]; labelType(code)
+                                ; laguilar@deloittemx.com     ; 300938:$catalog:$catalogVersion                           ; Camera              ; 2021.12.31                           ; PRIMARY
+                                ; laguilar@deloittemx.com     ; 300938:$catalog:$catalogVersion                           ; Custom1             ; 2021.12.31                           ; SECONDARY
+                                ; laguilar@deloittemx.com     ; 300938:$catalog:$catalogVersion                           ; Custom2             ; 2021.12.31                           ; ALTERNATIVE

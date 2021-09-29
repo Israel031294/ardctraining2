@@ -2,6 +2,8 @@
 <!--
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
+
+<!-- last typecode=10601 -->
 <items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
 
     <collectiontypes>
@@ -25,6 +27,12 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+
+        <enumtype code="CustomLabelTypeEnum" generate="true" autocreate="true" dynamic="true">
+            <value code="PRIMARY" />
+            <value code="SECONDARY" />
+            <value code="ALTERNATIVE" />
+        </enumtype>
     </enumtypes>
 
     <itemtypes>
@@ -32,6 +40,40 @@
         <!-- Add your item definitions here -->
 
         <typegroup name="ardctraining">
+            <itemtype code="CustomProductLabel" autocreate="true" generate="true"
+                      jaloclass="com.ardctraining.core.jalo.CustomProductLabel">
+                <deployment table="custprodlabel" typecode="10602" />
+                <attributes>
+                    <attribute qualifier="label" type="java.lang.String">
+                        <modifiers read="true" write="true" unique="true" />
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="labelType" type="CustomLabelTypeEnum">
+                        <modifiers read="true" write="true" />
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="validityDate" type="java.util.Date">
+                        <modifiers read="true" write="true" />
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="customer" type="Customer">
+                        <modifiers read="true" write="true" unique="true" />
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="product" type="Product">
+                        <modifiers read="true" write="true" unique="true" />
+                        <persistence type="property" />
+                    </attribute>
+                </attributes>
+                <indexes>
+                    <index name="pk_custprodlabel" unique="true">
+                        <key attribute="label" />
+                        <key attribute="customer" />
+                        <key attribute="product" />
+                    </index>
+                </indexes>
+            </itemtype>
+
             <itemtype code="Customer" autocreate="false" generate="false">
                 <attributes>
                     <attribute qualifier="company" type="java.lang.String">

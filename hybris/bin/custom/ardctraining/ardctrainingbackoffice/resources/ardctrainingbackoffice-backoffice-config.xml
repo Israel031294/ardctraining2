@@ -3,7 +3,22 @@
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
 <config xmlns="http://www.hybris.com/cockpit/config"
-	xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+	xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+	xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+	xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+	xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree"
+	xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch"
+	xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+	xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+	xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch">
+
+	<context component="explorer-tree" merge-by="principal">
+		<explorer-tree:explorer-tree>
+			<explorer-tree:navigation-node id="hmc_treenode_catalog">
+				<explorer-tree:type-node id="ardctraining_node_catalog_customproductlabel" code="CustomProductLabel" />
+			</explorer-tree:navigation-node>
+		</explorer-tree:explorer-tree>
+	</context>
 
 	<context merge-by="module" component="editorareaactions" type="Consignment">
 		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
@@ -22,5 +37,98 @@
 	        </na:notifications>
 	   </na:notification-area>
 	</context>
+
+	<!-- BEGIN CustomProductLabel configuration -->
+
+	<context type="CustomProductLabel">
+		<context parent="GenericItem" component="base" merge-by="type">
+			<y:base xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+				<y:labels beanId="customProductLabelLabelProvider" />
+			</y:base>
+		</context>
+		<context parent="GenericItem" component="listview">
+			<list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+				<list-view:column qualifier="customer"/>
+				<list-view:column qualifier="product"/>
+				<list-view:column qualifier="label"/>
+				<list-view:column qualifier="labelType"/>
+				<list-view:column qualifier="validityDate"/>
+			</list-view:list-view>
+		</context>
+		<context merge-by="type" parent="GenericItem" component="advanced-search">
+			<advanced-search:advanced-search
+					xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+				<advanced-search:field-list>
+					<advanced-search:field name="customer" selected="true" sortable="true"/>
+					<advanced-search:field name="product" selected="true" sortable="true"/>
+					<advanced-search:field name="labelType" selected="true" sortable="true"/>
+					<advanced-search:field name="label" selected="false" sortable="true"/>
+					<advanced-search:field name="validityDate" selected="false" sortable="true"/>
+				</advanced-search:field-list>
+			</advanced-search:advanced-search>
+		</context>
+		<context merge-by="type" parent="GenericItem" component="simple-search">
+			<simple-search:simple-search xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch">
+				<simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="label"/>
+				<simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="product"/>
+				<simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="customer"/>
+				<simple-search:sort-field name="label" asc="true" />
+			</simple-search:simple-search>
+		</context>
+		<context component="editor-area" parent="GenericItem" merge-by="type">
+			<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+				<editorArea:essentials>
+					<editorArea:essentialSection name="sec.customproductlabel.essential">
+						<editorArea:attribute qualifier="customer"/>
+						<editorArea:attribute qualifier="product"/>
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+				<editorArea:tab name="tab.customproductlabel.properties">
+					<editorArea:section name="sec.customproductlabel.general">
+						<editorArea:attribute qualifier="label" />
+						<editorArea:attribute qualifier="labelType" />
+						<editorArea:attribute qualifier="validityDate" />
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+		<context component="create-wizard">
+			<wz:flow id="CustomProductLabelWizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE"/>
+				</wz:prepare>
+				<wz:step id="step1" label="wiz.customproductlabel.step1.label" sublabel="wiz.customproductlabel.step1.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="customer"/>
+							<wz:property qualifier="product"/>
+							<wz:property qualifier="label"/>
+							<wz:property qualifier="validityDate"/>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel/>
+						<wz:next visible="newItem.product != null and newItem.label != null" />
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step2" label="wiz.customproductlabel.step2.label" sublabel="wiz.customproductlabel.step2.sublabel">
+					<wz:content id="step2.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="labelType"/>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step2.navigation">
+						<wz:cancel/>
+						<wz:back />
+						<wz:done>
+							<wz:save property="newItem"/>
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<!-- END CustomProductLabel configuration -->
 
 </config>

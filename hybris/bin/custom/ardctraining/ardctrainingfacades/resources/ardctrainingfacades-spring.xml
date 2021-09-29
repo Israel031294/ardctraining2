@@ -204,5 +204,25 @@
 		<property name="ardctrainingJobRoleService" ref="ardctrainingJobRoleService" />
 		<property name="jobRoleConverter" ref="jobRoleConverter" />
 	</bean>
+
+	<alias name="defaultCustomProductLabelPopulator" alias="customProductLabelPopulator" />
+	<bean id="defaultCustomProductLabelPopulator" class="com.ardctraining.facades.populators.CustomProductLabelPopulator" />
+
+	<alias name="defaultCustomProductLabelConverter" alias="customProductLabelConverter" />
+	<bean id="defaultCustomProductLabelConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.ardctraining.facades.product.data.CustomProductLabelData" />
+		<property name="populators">
+			<list>
+				<ref bean="customProductLabelPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultArdctrainingProductFacade" alias="productFacade" />
+	<bean id="defaultArdctrainingProductFacade" class="com.ardctraining.facades.product.impl.DefaultArdctrainingProductFacade"
+		  parent="defaultProductFacade">
+		<property name="customProductLabelService" ref="customProductLabelService" />
+		<property name="customProductLabelConverter" ref="customProductLabelConverter" />
+	</bean>
 	<!-- END custom beans -->
 </beans>

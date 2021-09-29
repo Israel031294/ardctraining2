@@ -32,6 +32,7 @@ import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
+import com.ardctraining.facades.product.ArdctrainingProductFacade;
 import com.ardctraining.storefront.controllers.ControllerConstants;
 
 import java.io.UnsupportedEncodingException;
@@ -90,8 +91,8 @@ public class ProductPageController extends AbstractPageController
 	@Resource(name = "productDataUrlResolver")
 	private UrlResolver<ProductData> productDataUrlResolver;
 
-	@Resource(name = "productVariantFacade")
-	private ProductFacade productFacade;
+	@Resource(name = "productFacade")
+	private ArdctrainingProductFacade productFacade;
 
 	@Resource(name = "productService")
 	private ProductService productService;
@@ -136,6 +137,7 @@ public class ProductPageController extends AbstractPageController
 		model.addAttribute(new ReviewForm());
 		model.addAttribute("pageType", PageType.PRODUCT.name());
 		model.addAttribute("futureStockEnabled", Boolean.valueOf(Config.getBoolean(FUTURE_STOCK_ENABLED, false)));
+		model.addAttribute("labels", productFacade.getCustomLabels(encodedProductCode));
 
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
