@@ -1,7 +1,11 @@
-$catalog=electronicsProductCatalog
-$catalogVersion=Online
+$catalog = electronicsProductCatalog
+$version = Online
+$catalogVersion = catalogVersion(catalog(id)[default=$catalog], version[default=$version])[default=$catalog:$version]
 
-INSERT_UPDATE CustomProductLabel; customer(uid)[unique = true]; product(code, catalogVersion(catalog(id), version))[unique = true]; label[unique = true]; validityDate[dateformat = yyyy.MM.dd]; labelType(code)
-                                ; laguilar@deloittemx.com     ; 300938:$catalog:$catalogVersion                           ; Camera              ; 2021.12.31                           ; PRIMARY
-                                ; laguilar@deloittemx.com     ; 300938:$catalog:$catalogVersion                           ; Custom1             ; 2021.12.31                           ; SECONDARY
-                                ; laguilar@deloittemx.com     ; 300938:$catalog:$catalogVersion                           ; Custom2             ; 2021.12.31                           ; ALTERNATIVE
+INSERT_UPDATE CustomProductLabel; customer(uid)[unique = true]; product(code, $catalogVersion)[unique = true]; label[unique = true]; validityDate[dateformat = yyyy.MM.dd]; labelType(code)
+                                ; laguilar@deloittemx.com     ; 300938                                       ; Camera              ; 2021.12.31                           ; PRIMARY
+                                ; laguilar@deloittemx.com     ; 300938                                       ; Custom1             ; 2021.12.31                           ; SECONDARY
+                                ; laguilar@deloittemx.com     ; 300938                                       ; Custom2             ; 2021.12.31                           ; ALTERNATIVE
+
+INSERT_UPDATE CustomProductLabel; customer(uid)[unique = true]; product(code, catalogVersion(catalog(id), version))[unique = true]; label[unique = true]; validityDate[dateformat = yyyy.MM.dd]; labelType[translator = com.ardctraining.core.data.batch.CustomProductLabelLabelTypeTranslator]
+                                ; laguilar@deloittemx.com     ; 300938:$catalog:$version                                          ; Custom3             ; 2021.12.31                           ; P
