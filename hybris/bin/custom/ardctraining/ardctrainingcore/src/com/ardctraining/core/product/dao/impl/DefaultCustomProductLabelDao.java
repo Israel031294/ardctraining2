@@ -9,6 +9,7 @@ import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
 import de.hybris.platform.servicelayer.search.SearchResult;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.apache.commons.collections4.CollectionUtils;
@@ -24,6 +25,10 @@ public class DefaultCustomProductLabelDao implements CustomProductLabelDao {
             "FROM   {" + CustomProductLabelModel._TYPECODE + "} " +
             "WHERE  {" + CustomProductLabelModel.CUSTOMER + "} = ?customer AND " +
             "       {" + CustomProductLabelModel.PRODUCT + "} = ?product";
+    private static final String FIND_EXPIRED_LABELS_QUERY =
+            "SELECT {" + ItemModel.PK + "} " +
+            "FROM   {" + CustomProductLabelModel._TYPECODE + "} " +
+            "WHERE  {" + CustomProductLabelModel.VALIDITYDATE + "} < ?now";
 
     @Override
     public List<CustomProductLabelModel> findByCustomerAndProduct(final CustomerModel customer, final ProductModel product) {
@@ -31,13 +36,25 @@ public class DefaultCustomProductLabelDao implements CustomProductLabelDao {
         query.addQueryParameter("customer", customer);
         query.addQueryParameter("product", product);
 
+        return findResult(query);
+    }
+
+    @Override
+    public List<CustomProductLabelModel> findExpired(final Date now) {
+        final FlexibleSearchQuery query = new FlexibleSearchQuery(FIND_EXPIRED_LABELS_QUERY);
+        query.addQueryParameter("now", now);
+
+        return findResult(query);
+    }
+
+    private List<CustomProductLabelModel> findResult(final FlexibleSearchQuery query) {
         final SearchResult<CustomProductLabelModel> result = getFlexibleSearchService().search(query);
 
         if (Objects.nonNull(result) && CollectionUtils.isNotEmpty(result.getResult())) {
             return result.getResult();
         }
 
-        LOG.warn("unable to find results for custom product labels");
+        LOG.warn("unable to find results for query");
 
         return Collections.emptyList();
     }

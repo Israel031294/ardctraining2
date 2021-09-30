@@ -1,0 +1,8 @@
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true];active[default=true]
+;customProductLabelCleanupJob;customProductLabelCleanupJobPerformable
+
+INSERT_UPDATE CustomProductLabelCleanupCronjob;code[unique=true];job(code);sessionLanguage(isocode)[default=en];sessionCurrency(isocode)[default=USD]
+;customProductLabelCleanupCronJob;customProductLabelCleanupJob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];cronExpression;relative[default=false];active[default=true];maxAcceptableDelay[default=-1]
+;customProductLabelCleanupCronJob;0 0 0/6 ? * * *
