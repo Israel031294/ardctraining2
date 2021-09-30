@@ -71,11 +71,11 @@
     <extension name='commercefacades' />
     <extension name='commerceservices' />
     <extension name='commerceservicesbackoffice' />
-    <extension name='commercewebservices' />
+    <!-- <extension name='commercewebservices' /> -->
     <extension name='commercewebservicescommons' />
-    <extension name='commercewebservicestests' />
-    <extension name='yocc' />
-    <extension name='yocctests' />
+    <!-- <extension name='commercewebservicestests' /> -->
+    <!-- <extension name='yocc' />
+    <extension name='yocctests' /> -->
     <extension name='configurablebundleaddon' />
     <extension name='configurablebundlebackoffice' />
     <extension name='configurablebundlefacades' />
@@ -94,12 +94,12 @@
     <extension name='consignmenttrackingbackoffice' />
     <extension name='consignmenttrackingfacades' />
     <extension name='consignmenttrackingmock' />
-    <extension name='consignmenttrackingocc' />
+    <!-- <extension name='consignmenttrackingocc' /> -->
     <extension name='consignmenttrackingservices' />
     <extension name='acceleratorbackoffice' />
     <extension name='acceleratorcms' />
     <extension name='acceleratorfacades' />
-    <extension name='acceleratorocc' />
+    <!-- <extension name='acceleratorocc' /> -->
     <extension name='acceleratorservices' />
     <extension name='acceleratorstorefrontcommons' />
     <extension name='addonsupport' />
@@ -110,12 +110,12 @@
     <extension name='customercouponaddon' />
     <extension name='customercouponbackoffice' />
     <extension name='customercouponfacades' />
-    <extension name='customercouponocc' />
+    <!-- <extension name='customercouponocc' /> -->
     <extension name='customercouponsamplesaddon' />
     <extension name='customercouponservices' />
     <extension name='customerinterestsaddon' />
     <extension name='customerinterestsfacades' />
-    <extension name='customerinterestsocc' />
+    <!-- <extension name='customerinterestsocc' /> -->
     <extension name='customerinterestsservices' />
     <extension name='customersupportbackoffice' />
     <extension name='customerticketingaddon' />
@@ -144,11 +144,11 @@
     <extension name='outboundsync' />
     <extension name='outboundsyncbackoffice' />
     <extension name='messagecentercsfacades' />
-    <extension name='messagecentercsocc' />
+    <!-- <extension name='messagecentercsocc' /> -->
     <extension name='messagecentercsservices' />
     <extension name='notificationaddon' />
     <extension name='notificationfacades' />
-    <extension name='notificationocc' />
+    <!-- <extension name='notificationocc' /> -->
     <extension name='notificationservices' />
     <extension name='npmancillary' />
     <extension name='b2bordermanagementfacades' />
@@ -224,13 +224,13 @@
     <extension name='textfieldconfiguratortemplateaddon' />
     <extension name='textfieldconfiguratortemplatebackoffice' />
     <extension name='textfieldconfiguratortemplatefacades' />
-    <extension name='textfieldconfiguratortemplateocc' />
-    <extension name='textfieldconfiguratortemplateocctests' />
+    <!-- <extension name='textfieldconfiguratortemplateocc' />
+    <extension name='textfieldconfiguratortemplateocctests' /> -->
     <extension name='textfieldconfiguratortemplateservices' />
     <extension name='timedaccesspromotionengineaddon' />
     <extension name='timedaccesspromotionenginebackoffice' />
     <extension name='timedaccesspromotionenginefacades' />
-    <extension name='timedaccesspromotionengineocc' />
+    <!-- <extension name='timedaccesspromotionengineocc' /> -->
     <extension name='timedaccesspromotionenginesamplesaddon' />
     <extension name='timedaccesspromotionengineservices' />
     <extension name='cms2' />
@@ -238,19 +238,19 @@
     <extension name='cmsbackoffice' />
     <extension name='cmscockpit' />
     <extension name='cmsfacades' />
-    <extension name='cmsocc' />
+    <!-- <extension name='cmsocc' /> -->
     <extension name='cmswebservices' />
     <extension name='previewwebservices' />
     <extension name='permissionsfacades' />
     <extension name='permissionswebservices' />
     <extension name='webservicescommons' />
     <extension name='ywebservices' />
-    <extension name='xyformsbackoffice' />
+    <!-- <extension name='xyformsbackoffice' />
     <extension name='xyformsfacades' />
     <extension name='xyformssamples' />
     <extension name='xyformsservices' />
     <extension name='xyformsstorefrontcommons' />
-    <extension name='xyformsweb' />
+    <extension name='xyformsweb' /> -->
 
 	<!-- custom extensions -->
 	<extension name="ardctrainingcore" />
@@ -260,5 +260,6 @@
 	<extension name="ardctraininginitialdata" />
 	<extension name="ardctrainingtest" />
 	<extension name="ardctrainingstorefront" />
+    <extension name="ardctrainingwebservices"/>
   </extensions>
 </hybrisconfig>
