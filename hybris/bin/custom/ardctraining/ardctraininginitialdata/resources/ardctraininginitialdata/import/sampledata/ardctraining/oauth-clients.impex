@@ -1,0 +1,2 @@
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true];resourceIds;scope;authorizedGrantTypes;authorities;clientSecret;registeredRedirectUri
+                                ;ardctraining;hybris;extended;implicit,client_credentials	;ROLE_TRUSTED_CLIENT;secret;http://localhost:9001/authorizationserver/oauth2_callback

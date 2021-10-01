@@ -1573,4 +1573,16 @@
         </property>
     </bean>
 
+    <bean parent="fieldSetLevelMapping" id="customProductLabelSearchWsDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="com.ardctraining.product.dto.search.CustomProductLabelSearchWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="label"/>
+                <entry key="DEFAULT" value="label"/>
+                <entry key="FULL" value="label,type"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>

@@ -172,4 +172,14 @@
 		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
 	</bean>
 
+	<bean class="com.ardctraining.product.dto.search.CustomProductLabelSearchWsDTO">
+		<description>Representation of a CustomProductLabel search result</description>
+		<hints>
+			<hint name="wsRelated"></hint>
+		</hints>
+		<property name="label" type="java.lang.String" />
+		<property name="type" type="java.lang.String" />
+		<property name="validityDate" type="java.lang.String" />
+	</bean>
+
 </beans>

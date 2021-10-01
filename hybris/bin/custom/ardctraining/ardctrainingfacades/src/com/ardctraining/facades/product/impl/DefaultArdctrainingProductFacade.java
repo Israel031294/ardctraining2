@@ -45,6 +45,14 @@ public class DefaultArdctrainingProductFacade extends DefaultProductFacade imple
         return Collections.emptyList();
     }
 
+    @Override
+    public List<CustomProductLabelData> getCustomLabelsByCustomerAndProduct(final String customerId, final String productCode) {
+        final CustomerModel user = getUserService().getUserForUID(customerId, CustomerModel.class);
+        final ProductModel product = getProductService().getProductForCode(productCode);
+
+        return getCustomProductLabelConverter().convertAll(getCustomProductLabelService().findByCustomerAndProduct(user, product));
+    }
+
     public CustomProductLabelService getCustomProductLabelService() {
         return customProductLabelService;
     }

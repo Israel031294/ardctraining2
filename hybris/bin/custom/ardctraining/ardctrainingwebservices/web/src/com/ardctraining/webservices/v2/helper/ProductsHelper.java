@@ -15,10 +15,16 @@ import de.hybris.platform.commercewebservicescommons.dto.search.facetdata.Produc
 import de.hybris.platform.commercewebservicescommons.dto.search.facetdata.ProductSearchPageWsDTO;
 import de.hybris.platform.commercewebservicescommons.errors.exceptions.RequestParameterException;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
+import com.ardctraining.facades.product.ArdctrainingProductFacade;
+import com.ardctraining.facades.product.data.CustomProductLabelData;
+import com.ardctraining.product.dto.search.CustomProductLabelSearchWsDTO;
 import com.ardctraining.webservices.util.ws.SearchQueryCodec;
 
+import java.util.Collections;
+import java.util.List;
 import javax.annotation.Resource;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +38,8 @@ public class ProductsHelper extends AbstractHelper
 	private SearchQueryCodec<SolrSearchQueryData> searchQueryCodec;
 	@Resource(name = "solrSearchStateConverter")
 	private Converter<SolrSearchQueryData, SearchStateData> solrSearchStateConverter;
+	@Resource(name = "productFacade")
+	private ArdctrainingProductFacade ardctrainingProductFacade;
 
 	/**
 	 * @deprecated since 6.6. Please use {@link #searchProducts(String, int, int, String, String, String)} instead.
@@ -100,5 +108,15 @@ public class ProductsHelper extends AbstractHelper
 			throw new RequestParameterException(searchQueryContext + " context does not exist", RequestParameterException.INVALID,
 					e);
 		}
+	}
+
+	public List<CustomProductLabelSearchWsDTO> searchCustomLabels(final String customer, final String product, final String fields) {
+		final List<CustomProductLabelData> result = ardctrainingProductFacade.getCustomLabelsByCustomerAndProduct(customer, product);
+
+		if (CollectionUtils.isNotEmpty(result)) {
+			return getDataMapper().mapAsList(result, CustomProductLabelSearchWsDTO.class, fields);
+		}
+
+		return Collections.emptyList();
 	}
 }

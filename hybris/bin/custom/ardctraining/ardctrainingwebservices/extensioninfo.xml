@@ -14,6 +14,9 @@
                 		
         
         <requires-extension name="ordermanagementfacades"/>
+
+
+        <requires-extension name="ardctrainingfacades"/>
                 		
         
         <coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="com.ardctraining.webservices"/>

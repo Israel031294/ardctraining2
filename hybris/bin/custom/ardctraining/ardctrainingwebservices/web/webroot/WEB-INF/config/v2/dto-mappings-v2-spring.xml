@@ -230,4 +230,17 @@
 			</map>
 		</property>
 	</bean>
+
+	<bean id="customLabeldsFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="com.ardctraining.facades.product.data.CustomProductLabelData"/>
+		<property name="destClass"
+				  value="com.ardctraining.product.dto.search.CustomProductLabelSearchWsDTO"/>
+		<property name="fieldMapping">
+			<map>
+				<entry key="label" value="label"/>
+				<entry key="type" value="type"/>
+			</map>
+		</property>
+	</bean>
 </beans>
